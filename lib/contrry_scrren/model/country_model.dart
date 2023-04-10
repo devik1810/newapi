@@ -1,5 +1,4 @@
 
-import 'dart:convert';
 
 class CountryModel {
   CountryModel({
@@ -8,8 +7,8 @@ class CountryModel {
     required this.articles,
   });
 
-  String status;
-  int totalResults;
+  String? status;
+  int? totalResults;
   List<Article> articles;
 
   factory CountryModel.fromJson(Map<String, dynamic> json) => CountryModel(
@@ -39,12 +38,12 @@ class Article {
 
   Source source;
   String? author;
-  String title;
+  String? title;
   String? description;
-  String url;
+  String? url;
   String? urlToImage;
   DateTime publishedAt;
-  String content;
+  String? content;
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
     source: Source.fromJson(json["source"]),

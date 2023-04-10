@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newapi/contrry_scrren/provider/country_provider.dart';
-import 'package:newapi/screen/provider/news_provider.dart';
-import 'package:newapi/screen/view/news_view.dart';
+
 
 import 'package:provider/provider.dart';
 

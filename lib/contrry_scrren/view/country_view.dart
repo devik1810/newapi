@@ -34,6 +34,7 @@ class _CountryViewState extends State<CountryView> {
                 TextButton(
                   onPressed: () {
                     countryProviderT!.changeConrty('in');
+
                   },
                   child: Text(
                     "in",
@@ -87,17 +88,18 @@ class _CountryViewState extends State<CountryView> {
                     if (snapshot.hasError) {
                       return Text("${snapshot.error}");
                     } else if (snapshot.hasData) {
-                      CountryModel? counrtryModel = snapshot.data;
+                      CountryModel? counrtry = snapshot.data;
                       return ListView.builder(
                           itemBuilder: (context, index) {
                             return ListTile(
                               title: Text(
-                                  "${counrtryModel!.articles[index].title}"),
-                              subtitle: Text(
-                                  "${counrtryModel!.articles[index]..author}"),
+                                  "${counrtry.articles[index].title}"),
+                              subtitle: Text("${counrtry.articles[index].author}"),
+                              leading: CircleAvatar(backgroundImage: NetworkImage("${counrtry.articles[index].urlToImage}"),
+                              )
                             );
                           },
-                          itemCount: counrtryModel!.articles.length);
+                          itemCount: counrtry!.articles.length);
                     }
                     return Container(child: CircularProgressIndicator());
                   },
