@@ -20,7 +20,7 @@ class _CountryViewState extends State<CountryView> {
     countryProviderT = Provider.of<CountryProvider>(context, listen: true);
     countryProviderF = Provider.of<CountryProvider>(context, listen: false);
     return SafeArea(
-      child: Scaffold(
+      child: Scaffold(backgroundColor: Colors.grey.shade200,
         appBar: AppBar(
           title: Text("Country"),
           centerTitle: true,
@@ -34,7 +34,6 @@ class _CountryViewState extends State<CountryView> {
                 TextButton(
                   onPressed: () {
                     countryProviderT!.changeConrty('in');
-
                   },
                   child: Text(
                     "in",
@@ -91,13 +90,38 @@ class _CountryViewState extends State<CountryView> {
                       CountryModel? counrtry = snapshot.data;
                       return ListView.builder(
                           itemBuilder: (context, index) {
-                            return ListTile(
-                              title: Text(
-                                  "${counrtry.articles[index].title}"),
-                              subtitle: Text("${counrtry.articles[index].author}"),
-                              leading: CircleAvatar(backgroundImage: NetworkImage("${counrtry.articles[index].urlToImage}"),
-                              )
-                            );
+                            return Align(
+                                alignment: Alignment.topLeft,
+
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        SizedBox(width: 10),
+                                        Container(
+                                          height: 120,
+                                          width: 150,
+                                          child: Image.network(
+                                              "${counrtry.articles[index].urlToImage}"),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Container(
+                                            width: 180,
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                    "${counrtry.articles[index].title}",style: TextStyle(fontWeight: FontWeight.bold),),
+                                                SizedBox(height: 10),
+                                                Text(
+                                                    "${counrtry.articles[index].author}")
+                                              ],
+                                            ))
+                                      ],
+                                    ),
+                                  ],
+                                ));
                           },
                           itemCount: counrtry!.articles.length);
                     }
